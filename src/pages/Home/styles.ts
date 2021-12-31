@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import { Pokemon } from './index';
+import { Pokemon } from '.';
 
 import backgroundColor from '../../config/backgroundColor.json';
 import colorType from '../../config/color.json';
