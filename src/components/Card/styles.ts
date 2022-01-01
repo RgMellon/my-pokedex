@@ -22,20 +22,6 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const Header = styled.ImageBackground`
-  width: 100%;
-  height: 200px;
-  background: #fff;
-`;
-
-export const Title = styled.Text`
-  color: #17171b;
-  font-size: 32px;
-  line-height: 38px;
-  font-weight: bold;
-  margin-top: -70px;
-`;
-
 export const PokemonCard = styled.TouchableOpacity<PokemonCardProps>`
   /* height: 115px; */
   background: ${props => backgroundColor[props.type]};
