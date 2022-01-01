@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import { ActivityIndicator, FlatList } from 'react-native';
 
+import { Card } from '../../components/Card';
+
 import pokeballImage from '../../assets/img/pokeball.png';
-import pokeballCardImage from '../../assets/img/pokeballCard.png';
-import dotsImage from '../../assets/img/dots.png';
 
 import api from '../../services/api';
 
@@ -83,36 +82,7 @@ export function Home() {
           data={pokemons}
           keyExtractor={pokemon => pokemon.id.toString()}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item: pokemon }) => (
-            <S.PokemonCard type={pokemon.types[0].type.name} onPress={() => {}}>
-              <S.LeftSide>
-                <S.PokemonId>#{pokemon.id}</S.PokemonId>
-                <S.PokemonName>{pokemon.name}</S.PokemonName>
-                <S.ImageCardDetailLeftSide source={dotsImage} />
-                <S.PokemonContentType>
-                  {pokemon.types.map((pokemonType, index) => (
-                    <S.PokemonType
-                      key={pokemonType.type.name}
-                      type={pokemonType.type.name}
-                    >
-                      <S.PokemonTypeText>
-                        {pokemonType.type.name}
-                      </S.PokemonTypeText>
-                    </S.PokemonType>
-                  ))}
-                </S.PokemonContentType>
-              </S.LeftSide>
-              {console.log(pokemon.id)}
-              <S.RightSide>
-                <S.PokeballCardDetail source={pokeballCardImage} />
-                <S.PokemonImage
-                  source={{
-                    uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
-                  }}
-                />
-              </S.RightSide>
-            </S.PokemonCard>
-          )}
+          renderItem={({ item: pokemon }) => <Card data={pokemon} />}
         />
       </S.Container>
     </>
