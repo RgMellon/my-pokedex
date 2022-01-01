@@ -1,0 +1,11 @@
+{
+  "grass": "#8BBE8A",
+  "fire": "#FFA756",
+  "water": "#58ABF6",
+  "poison": "#9F6E97",
+  "normal": "#B5B9C4",
+  "bug": "#8BD674",
+  "flying": "#748FC9",
+  "eletric": "#F2CB55",
+  "ground": "#F78551"
+}

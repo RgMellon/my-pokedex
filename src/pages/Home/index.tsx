@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { ScrollView, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, FlatList } from 'react-native';
 
 import pokeballImage from '../../assets/img/pokeball.png';
 import pokeballCardImage from '../../assets/img/pokeballCard.png';
@@ -71,12 +71,15 @@ export function Home() {
       <ActivityIndicator size="large" color="#d6d6d6" />
     </S.LoadingScreen>
   ) : (
-    <ScrollView>
-      <S.Header source={pokeballImage} />
-
+    <>
       <S.Container>
-        <S.Title> Pokédex</S.Title>
-        <S.PokemonList
+        <FlatList
+          ListHeaderComponent={
+            <>
+              <S.Header source={pokeballImage} />
+              <S.Title> Pokédex</S.Title>
+            </>
+          }
           data={pokemons}
           keyExtractor={pokemon => pokemon.id.toString()}
           showsVerticalScrollIndicator={false}
@@ -87,9 +90,9 @@ export function Home() {
                 <S.PokemonName>{pokemon.name}</S.PokemonName>
                 <S.ImageCardDetailLeftSide source={dotsImage} />
                 <S.PokemonContentType>
-                  {pokemon.types.map(pokemonType => (
+                  {pokemon.types.map((pokemonType, index) => (
                     <S.PokemonType
-                      key={pokemon.id}
+                      key={pokemonType.type.name}
                       type={pokemonType.type.name}
                     >
                       <S.PokemonTypeText>
@@ -99,12 +102,12 @@ export function Home() {
                   ))}
                 </S.PokemonContentType>
               </S.LeftSide>
-
+              {console.log(pokemon.id)}
               <S.RightSide>
                 <S.PokeballCardDetail source={pokeballCardImage} />
                 <S.PokemonImage
                   source={{
-                    uri: `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`,
+                    uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
                   }}
                 />
               </S.RightSide>
@@ -112,6 +115,6 @@ export function Home() {
           )}
         />
       </S.Container>
-    </ScrollView>
+    </>
   );
 }

@@ -20,8 +20,12 @@ export const LoadingScreen = styled.View`
 
 export const Container = styled.View`
   background: #fff;
-  padding: 40px;
+  padding: 20px;
   flex: 1;
+`;
+
+export const List = styled(FlatList as new () => FlatList<Pokemon>)`
+  margin-top: 10px;
 `;
 
 export const Header = styled.ImageBackground`
@@ -36,10 +40,6 @@ export const Title = styled.Text`
   line-height: 38px;
   font-weight: bold;
   margin-top: -70px;
-`;
-
-export const PokemonList = styled(FlatList as new () => FlatList<Pokemon>)`
-  margin-top: 10px;
 `;
 
 export const PokemonCard = styled.TouchableOpacity<PokemonCardProps>`
@@ -124,7 +124,7 @@ export const PokemonImage = styled.Image`
   margin-top: -40px;
   width: 130px;
   height: 130px;
-  margin-right: -40px;
+  /* margin-right: -100px; */
 `;
 
 export const PokeballCardDetail = styled.Image`
