@@ -49,6 +49,7 @@ O projeto foi feito utilizando das seguintes tecnologias
 - Styled-Components
 - Typescript
 - Axios
+- Reanimated V2
 
 ---
 
@@ -86,6 +87,6 @@ O projeto foi feito utilizando das seguintes tecnologias
 
 Segue o link para download do APK (android)
 
-[Download apk](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40rgmellon/mypokedex-6860b18114cb4db1934d2e3303d35f06-signed.apk)
+[Download apk](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40rgmellon/mypokedex-23943422436e4cfbb59ab9799209522e-signed.apk)
 
 Desenvolvido com ♥ por Renan Melo
