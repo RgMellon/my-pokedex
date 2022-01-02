@@ -25,33 +25,33 @@ type CardProps = {
 
 export function Card({ data }: CardProps) {
   return (
-    <CardAnimation>
-      <S.PokemonCard type={data.types[0].type.name} onPress={() => {}}>
-        <S.LeftSide>
-          <S.PokemonId>#{data.id}</S.PokemonId>
-          <S.PokemonName>{data.name}</S.PokemonName>
-          <S.ImageCardDetailLeftSide source={dotsImage} />
-          <S.PokemonContentType>
-            {data.types.map((pokemonType, index) => (
-              <S.PokemonType
-                key={pokemonType.type.name}
-                type={pokemonType.type.name}
-              >
-                <S.PokemonTypeText>{pokemonType.type.name}</S.PokemonTypeText>
-              </S.PokemonType>
-            ))}
-          </S.PokemonContentType>
-        </S.LeftSide>
+    <S.PokemonCard type={data.types[0].type.name} onPress={() => {}}>
+      <S.LeftSide>
+        <S.PokemonId>#{data.id}</S.PokemonId>
+        <S.PokemonName>{data.name}</S.PokemonName>
+        <S.ImageCardDetailLeftSide source={dotsImage} />
+        <S.PokemonContentType>
+          {data.types.map((pokemonType, index) => (
+            <S.PokemonType
+              key={pokemonType.type.name}
+              type={pokemonType.type.name}
+            >
+              <S.PokemonTypeText>{pokemonType.type.name}</S.PokemonTypeText>
+            </S.PokemonType>
+          ))}
+        </S.PokemonContentType>
+      </S.LeftSide>
 
-        <S.RightSide>
-          <S.PokeballCardDetail source={pokeballCardImage} />
+      <S.RightSide>
+        <S.PokeballCardDetail source={pokeballCardImage} />
+        <CardAnimation>
           <S.PokemonImage
             source={{
               uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
             }}
           />
-        </S.RightSide>
-      </S.PokemonCard>
-    </CardAnimation>
+        </CardAnimation>
+      </S.RightSide>
+    </S.PokemonCard>
   );
 }
