@@ -5,6 +5,7 @@ import * as S from './styles';
 import pokeballCardImage from '../../assets/img/pokeballCard.png';
 import dotsImage from '../../assets/img/dots.png';
 import { CardAnimation } from '../CardAnimated';
+import { TouchableOpacityProps } from 'react-native';
 
 type PokemonType = {
   type: {
@@ -21,17 +22,17 @@ type Pokemon = {
 
 type CardProps = {
   data: Pokemon;
-};
+} & TouchableOpacityProps;
 
-export function Card({ data }: CardProps) {
+export function Card({ data, ...rest }: CardProps) {
   return (
-    <S.PokemonCard type={data.types[0].type.name} onPress={() => {}}>
+    <S.PokemonCard type={data.types[0].type.name} {...rest}>
       <S.LeftSide>
         <S.PokemonId>#{data.id}</S.PokemonId>
         <S.PokemonName>{data.name}</S.PokemonName>
         <S.ImageCardDetailLeftSide source={dotsImage} />
         <S.PokemonContentType>
-          {data.types.map((pokemonType, index) => (
+          {data.types.map(pokemonType => (
             <S.PokemonType
               key={pokemonType.type.name}
               type={pokemonType.type.name}

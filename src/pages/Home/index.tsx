@@ -9,6 +9,7 @@ import pokeballImage from '../../assets/img/pokeball.png';
 import api from '../../services/api';
 
 import * as S from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 type PokemonType = {
   type: {
@@ -29,6 +30,8 @@ export interface Request {
 }
 
 export function Home() {
+  const { navigate } = useNavigation();
+
   const [load, setLoad] = useState<boolean>(true);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
@@ -71,6 +74,12 @@ export function Home() {
     return { id, types };
   }
 
+  function handleNavigationPokemonDetail(pokemonId: number) {
+    navigate('About', {
+      pokemonId,
+    });
+  }
+
   return load ? (
     <S.LoadingScreen>
       <Load />
@@ -88,7 +97,14 @@ export function Home() {
           data={pokemons}
           keyExtractor={pokemon => pokemon.id.toString()}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item: pokemon }) => <Card data={pokemon} />}
+          renderItem={({ item: pokemon }) => (
+            <Card
+              data={pokemon}
+              onPress={() => {
+                handleNavigationPokemonDetail(pokemon.id);
+              }}
+            />
+          )}
         />
       </S.Container>
     </>
