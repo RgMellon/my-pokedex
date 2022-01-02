@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 
 import { Card } from '../../components/Card';
+import { Load } from '../../components/Load';
 
 import pokeballImage from '../../assets/img/pokeball.png';
 
@@ -33,25 +34,30 @@ export function Home() {
 
   useEffect(() => {
     async function getPokemons(): Promise<void> {
-      const response = await api.get('/pokemon');
-      const { results } = response.data;
+      try {
+        const response = await api.get('/pokemon');
+        const { results } = response.data;
 
-      const payloadPokemons = await Promise.all(
-        results.map(async (pokemon: Pokemon) => {
-          const { id, types } = await getMoreInfoAboutPokemonsByUrl(
-            pokemon.url,
-          );
+        const payloadPokemons = await Promise.all(
+          results.map(async (pokemon: Pokemon) => {
+            const { id, types } = await getMoreInfoAboutPokemonsByUrl(
+              pokemon.url,
+            );
 
-          return {
-            name: pokemon.name,
-            id,
-            types,
-          };
-        }),
-      );
+            return {
+              name: pokemon.name,
+              id,
+              types,
+            };
+          }),
+        );
 
-      setPokemons(payloadPokemons as Pokemon[]);
-      setLoad(false);
+        setPokemons(payloadPokemons as Pokemon[]);
+      } catch (err) {
+        Alert.alert('ops, algo de errado aconteceu, tente mais tarde');
+      } finally {
+        setLoad(false);
+      }
     }
 
     getPokemons();
@@ -67,7 +73,7 @@ export function Home() {
 
   return load ? (
     <S.LoadingScreen>
-      <ActivityIndicator size="large" color="#d6d6d6" />
+      <Load />
     </S.LoadingScreen>
   ) : (
     <>
