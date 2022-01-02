@@ -27,7 +27,7 @@ interface IAbilitys {
   };
 }
 
-interface ITypes {
+type PokemonTypes = {
   type: {
     name:
       | 'grass'
@@ -40,20 +40,20 @@ interface ITypes {
       | 'eletric'
       | 'ground';
   };
-}
+};
 
-interface IPokemon {
+type PokemonProps = {
   id: number;
   name: string;
   stats: IAttributes[];
   abilities: IAbilitys[];
-  types: ITypes[];
+  types: PokemonTypes[];
   color: string;
-}
+};
 
-interface RouteParams {
+type RouteParams = {
   pokemonId: number;
-}
+};
 
 export function About() {
   const route = useRoute();
@@ -62,7 +62,7 @@ export function About() {
   const { pokemonId } = route.params as RouteParams;
   const { goBack } = useNavigation();
 
-  const [pokemon, setPokemon] = useState({} as IPokemon);
+  const [pokemon, setPokemon] = useState({} as PokemonProps);
   const [load, setLoad] = useState<boolean>(true);
 
   useEffect(() => {
@@ -74,8 +74,9 @@ export function About() {
 
         const { stats, abilities, id, name, types } = response.data;
 
-        const currentType = types[0].type.name as string;
-        const color = colors.backgroundCard[currentType]!;
+        const currentType = types[0].type.name;
+
+        const color = colors.backgroundCard[currentType];
 
         setPokemon({
           stats,
@@ -128,7 +129,7 @@ export function About() {
           <S.PokemonName>{pokemon.name}</S.PokemonName>
           <S.PokemonTypeContainer>
             {pokemon.types.map(({ type }) => (
-              <S.PokemonType type={type.name}>
+              <S.PokemonType type={type.name} key={type.name}>
                 <S.PokemonTypeText>{type.name}</S.PokemonTypeText>
               </S.PokemonType>
             ))}
@@ -159,7 +160,9 @@ export function About() {
 
         <S.Title type={pokemon.types[0].type.name}> Abilities </S.Title>
         {pokemon.abilities.map(abilityItem => (
-          <S.Ability>{abilityItem.ability.name}</S.Ability>
+          <S.Ability key={abilityItem.ability.name}>
+            {abilityItem.ability.name}
+          </S.Ability>
         ))}
       </S.Container>
     </ScrollView>

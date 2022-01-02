@@ -1,4 +1,7 @@
+import { Dimensions } from 'react-native';
 import styled, { css } from 'styled-components/native';
+
+const windowWidth = Dimensions.get('window').width;
 
 export const LoadingScreen = styled.View`
   flex: 1;
@@ -9,15 +12,17 @@ export const LoadingScreen = styled.View`
 export const Container = styled.View`
   ${({ theme }) => css`
     background: ${theme.colors.background};
-    padding: 20px;
     flex: 1;
+
+    position: relative;
   `}
 `;
 
 export const Header = styled.ImageBackground`
   ${({ theme }) => css`
-    width: 100%;
-    height: 200px;
+    width: ${windowWidth}px;
+    margin-left: -20px;
+    height: 220px;
     background: ${theme.colors.background};
   `}
 `;

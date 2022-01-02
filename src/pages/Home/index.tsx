@@ -79,7 +79,6 @@ export function Home() {
       pokemonId,
     });
   }
-
   return load ? (
     <S.LoadingScreen>
       <Load />
@@ -94,6 +93,9 @@ export function Home() {
               <S.Title> Pokédex</S.Title>
             </>
           }
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+          }}
           data={pokemons}
           keyExtractor={pokemon => pokemon.id.toString()}
           showsVerticalScrollIndicator={false}
