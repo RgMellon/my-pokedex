@@ -1,46 +1,35 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
-import backgroundColor from '../../config/backgroundColor.json';
-import colorType from '../../config/color.json';
-
-interface PokemonTypeProps {
+interface PokemonType {
   type: string;
 }
-
-interface PokemonCardProps {
-  type: string;
-}
-
-export const LoadingScreen = styled.View`
-  flex: 1;
-  justify-content: center;
-`;
 
 export const Container = styled.View`
-  background: #fff;
-  padding: 20px;
-  flex: 1;
+  ${({ theme }) => css`
+    background: ${theme.colors.background};
+    padding: 20px;
+    flex: 1;
+  `}
 `;
 
-export const PokemonCard = styled.TouchableOpacity<PokemonCardProps>`
-  /* height: 115px; */
-  background: ${props => backgroundColor[props.type]};
-  border-radius: 10px;
-  margin-top: 30px;
-  flex-direction: row;
-  padding: 20px;
+export const PokemonCard = styled.TouchableOpacity<PokemonType>`
+  ${({ theme, type }) => css`
+    background: ${theme.colors.backgroundCard[type]};
+    border-radius: 10px;
+    margin-top: 30px;
+    flex-direction: row;
+    padding: 20px;
+  `}
 `;
 
 export const LeftSide = styled.View`
   width: 50%;
-  /* padding: 15px; */
   position: relative;
 `;
 
 export const ContentLeftSide = styled.View`
   padding: 20px;
   flex: 1;
-  background: red;
 `;
 
 export const ImageCardDetailLeftSide = styled.Image`
@@ -55,24 +44,28 @@ export const PokemonContentType = styled.View`
   flex-direction: row;
 `;
 
-export const PokemonType = styled.View<PokemonTypeProps>`
-  padding: 5px;
-  width: 65px;
-  height: 25px;
-  background: ${props => colorType[props.type]};
-  border-radius: 3px;
-  margin-left: 5px;
-  margin-top: 5px;
-  justify-content: center;
-  align-items: center;
+export const PokemonType = styled.View<PokemonType>`
+  ${({ theme, type }) => css`
+    padding: 5px;
+    width: 65px;
+    height: 25px;
+    background: ${theme.colors.boxType[type]};
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+  `}
 `;
 
 export const PokemonTypeText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: #ffffff;
+  ${({ theme }) => css`
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: ${theme.colors.background};
+  `}
 `;
 
 export const RightSide = styled.View`
@@ -83,28 +76,30 @@ export const RightSide = styled.View`
 `;
 
 export const PokemonId = styled.Text`
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
-  color: rgba(23, 23, 27, 0.6);
+  ${({ theme }) => css`
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: ${theme.colors.light_text};
+  `}
 `;
 
 export const PokemonName = styled.Text`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 25px;
-  line-height: 31px;
-  margin-top: 5px;
-  /* identical to box height */
-  /* Text / White */
-  color: #ffffff;
+  ${({ theme }) => css`
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 31px;
+    margin-top: 5px;
+
+    color: ${theme.colors.background};
+  `}
 `;
 
 export const PokemonImage = styled.Image`
   margin-top: -40px;
   width: 130px;
   height: 130px;
-  /* margin-right: -100px; */
 `;
 
 export const PokeballCardDetail = styled.Image`
